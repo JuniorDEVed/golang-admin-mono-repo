@@ -11,11 +11,8 @@ import (
 )
 
 func Register(c *fiber.Ctx) error {
-	//	maps are objects (key value pairs) in this case
-	//	type string keys maps to string values
 	var data map[string]string
 
-	// &data is the address, so BodyParser maps to mem address &data
 	if err := c.BodyParser(&data); err != nil {
 		return err
 	}
