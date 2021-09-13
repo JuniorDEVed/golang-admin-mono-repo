@@ -24,5 +24,4 @@ func Connect() {
 
 	// export database
 	DB = database
-
 }

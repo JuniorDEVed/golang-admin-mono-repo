@@ -61,7 +61,10 @@ func Register(c *fiber.Ctx) error {
 				Then we check if user exists using email
 				Then CompareHashandPassword using bcrypt package
 				Then generate JWT using util.GenerateJwt convert userId to string
-				Then create cookie
+				Then construct cookie
+				Then set cookie to context
+				Return token to client
+
 */
 
 func Login(c *fiber.Ctx) error {
