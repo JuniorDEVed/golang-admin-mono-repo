@@ -41,6 +41,17 @@ func Register(c *fiber.Ctx) error {
 	return c.JSON(user)
 }
 
+/*
+ 	User controller
+	desc: We take the data map[string]string (key value string string)
+				We use c.BodyParser(&data) to turn data into usable struct
+				Then initialise empty user struct
+				Then we check if user exists using email
+				Then CompareHashandPassword using bcrypt package
+				Then generate JWT using util.GenerateJwt convert userId to string
+				Then create cookie
+*/
+
 func Login(c *fiber.Ctx) error {
 	var data map[string]string
 
@@ -78,10 +89,21 @@ func Login(c *fiber.Ctx) error {
 		HTTPOnly: true,
 	}
 
+	// Cookie sets a cookie by passing a cookie struct
 	c.Cookie(&cookie)
 
 	return c.JSON(token)
 }
+
+/*
+ 	User controller
+	desc: We take the jwt cookie from fiber context
+				We pass cookie, jwt.StandardClaims struct, anon func with token to
+				parseWithClaims function to get back token
+				Then we check if claims and type cast token.claims.(*Claims)
+				Then we filter where id == claims.Issuer return 1st result and store in &user
+				Then return c.JSON(user)
+*/
 
 type Claims struct {
 	jwt.StandardClaims
