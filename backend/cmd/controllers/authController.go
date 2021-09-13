@@ -101,7 +101,7 @@ func Login(c *fiber.Ctx) error {
 				We pass cookie, jwt.StandardClaims struct, anon func with token to
 				parseWithClaims function to get back token
 				Then we check if claims and type cast token.claims.(*Claims)
-				Then we filter where id == claims.Issuer return 1st result and store in &user
+				Then we filter where id == claims.Issuer return 1st result and store in user
 				Then return c.JSON(user)
 */
 
@@ -131,6 +131,8 @@ func User(c *fiber.Ctx) error {
 
 	return c.JSON(user)
 }
+
+// Logout
 
 func Logout(c *fiber.Ctx) error {
 	cookie := fiber.Cookie{
