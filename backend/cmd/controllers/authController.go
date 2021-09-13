@@ -13,6 +13,18 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+/*
+	Register User
+	desc: We take body/data from fiber context and store in map
+				We use context.BodyParser to generate struct from stringyfied data
+				Then we check if both passwords match
+				Then hash the password using bcrypt.GenerateFromPassword passing in []byte
+				Then create new user model from models.User struct
+				Save new user into database using DB.Create(&user)
+				Return newly created user
+
+*/
+
 func Register(c *fiber.Ctx) error {
 	var data map[string]string
 
@@ -42,7 +54,7 @@ func Register(c *fiber.Ctx) error {
 }
 
 /*
- 	User controller
+ 	Login User
 	desc: We take the data map[string]string (key value string string)
 				We use c.BodyParser(&data) to turn data into usable struct
 				Then initialise empty user struct
@@ -96,7 +108,7 @@ func Login(c *fiber.Ctx) error {
 }
 
 /*
- 	User controller
+ 	User Claims
 	desc: We take the jwt cookie from fiber context
 				We pass cookie, jwt.StandardClaims struct, anon func with token to
 				parseWithClaims function to get back token
@@ -132,7 +144,12 @@ func User(c *fiber.Ctx) error {
 	return c.JSON(user)
 }
 
-// Logout
+/*
+	Logout User
+	desc: We reset cookie values
+				Set cookie date value to expired by 1 hour
+				set c.cookie(&cookie)
+*/
 
 func Logout(c *fiber.Ctx) error {
 	cookie := fiber.Cookie{
