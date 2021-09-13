@@ -1,6 +1,0 @@
-{
-  "deploy": {
-      "main": "backend",
-      "execDir": "backend"
-  }
-}
