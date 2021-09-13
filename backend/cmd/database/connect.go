@@ -13,7 +13,6 @@ var DB *gorm.DB
 func Connect() {
 	database, err := gorm.Open(mysql.Open(os.Getenv("PSCALE_DEV")), &gorm.Config{})
 
-
 	if err != nil {
 		panic("Could not connect to the database")
 	}
