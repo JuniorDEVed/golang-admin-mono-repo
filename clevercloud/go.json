@@ -1,6 +1,5 @@
 {
   "deploy": {
-      "appIsGoPath": true,
       "main": "backend",
       "execDir": "backend"
   }
