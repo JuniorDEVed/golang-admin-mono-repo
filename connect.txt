@@ -1,6 +1,0 @@
-database: golang-admin
-username: 2y449b0yrm05
-host: r74aavhpfqzo.eu-west-2.psdb.cloud
-password: pscale_pw_hvqtOSio3iU7koGXi1Q_MGY0tmjc1vdf9K6PdqDcPlc
-
-db, err := sql.Open("mysql", "2y449b0yrm05:pscale_pw_hvqtOSio3iU7koGXi1Q_MGY0tmjc1vdf9K6PdqDcPlc@tcp(r74aavhpfqzo.eu-west-2.psdb.cloud)/golang-admin?tls=true")

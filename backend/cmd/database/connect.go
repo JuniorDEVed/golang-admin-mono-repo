@@ -2,6 +2,7 @@ package database
 
 import (
 	"go-admin/cmd/models"
+	"os"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -10,7 +11,8 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	database, err := gorm.Open(mysql.Open("2y449b0yrm05:pscale_pw_hvqtOSio3iU7koGXi1Q_MGY0tmjc1vdf9K6PdqDcPlc@tcp(r74aavhpfqzo.eu-west-2.psdb.cloud)/golang-admin?tls=true"), &gorm.Config{})
+	database, err := gorm.Open(mysql.Open(os.Getenv("PSCALE_DEV")), &gorm.Config{})
+
 
 	if err != nil {
 		panic("Could not connect to the database")
