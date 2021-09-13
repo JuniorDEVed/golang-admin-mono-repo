@@ -1,7 +1,8 @@
 package database
 
 import (
-	"github.com/juniordeved/go-admin/cmd/models"
+	"go-admin/cmd/models"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

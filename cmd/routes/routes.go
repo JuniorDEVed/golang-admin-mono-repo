@@ -1,8 +1,9 @@
 package routes
 
 import (
+	"go-admin/cmd/controllers"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/juniordeved/go-admin/cmd/controllers"
 )
 
 func Setup(app *fiber.App) {

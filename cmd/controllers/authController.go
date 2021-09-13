@@ -1,14 +1,16 @@
 package controllers
 
 import (
-	"github.com/dgrijalva/jwt-go"
-	"github.com/gofiber/fiber/v2"
-	"github.com/juniordeved/go-admin/cmd/database"
-	"github.com/juniordeved/go-admin/cmd/models"
-	"github.com/juniordeved/go-admin/cmd/util"
-	"golang.org/x/crypto/bcrypt"
 	"strconv"
 	"time"
+
+	"go-admin/cmd/database"
+	"go-admin/cmd/models"
+	"go-admin/cmd/util"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gofiber/fiber/v2"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func Register(c *fiber.Ctx) error {
