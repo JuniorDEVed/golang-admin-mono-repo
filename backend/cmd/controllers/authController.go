@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"strconv"
 	"time"
 
@@ -141,8 +140,6 @@ func User(c *fiber.Ctx) error {
 
 	// Casted as claims
 	claims := token.Claims.(*Claims)
-
-	fmt.Println(claims.Issuer)
 
 	var user models.User
 
