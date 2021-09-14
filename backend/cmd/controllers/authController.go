@@ -8,7 +8,6 @@ import (
 	"go-admin/cmd/models"
 	"go-admin/cmd/util"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -120,30 +119,14 @@ func Login(c *fiber.Ctx) error {
 				Then return c.JSON(user)
 */
 
-type Claims struct {
-	jwt.StandardClaims
-}
-
 func User(c *fiber.Ctx) error {
 	cookie := c.Cookies("jwt")
 
-	token, err := jwt.ParseWithClaims(cookie, &Claims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte("secret"), nil
-	})
-
-	if err != nil || !token.Valid {
-		c.Status(fiber.StatusUnauthorized)
-		return c.JSON(fiber.Map{
-			"message": "unauthenticated",
-		})
-	}
-
-	// Casted as claims
-	claims := token.Claims.(*Claims)
+	id, _ := util.ParseJwt(cookie)
 
 	var user models.User
 
-	database.DB.Where("id = ?", claims.Issuer).First(&user)
+	database.DB.Where("id = ?", id).First(&user)
 
 	return c.JSON(user)
 }
