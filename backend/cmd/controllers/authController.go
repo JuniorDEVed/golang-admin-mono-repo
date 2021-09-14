@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -111,7 +112,7 @@ func Login(c *fiber.Ctx) error {
 }
 
 /*
- 	User Claims
+ 	User Claims - get generate token with user claims and return user
 	desc: We take the jwt cookie from fiber context
 				We pass cookie, jwt.StandardClaims struct, anon func with token to
 				parseWithClaims function to get back token
@@ -138,7 +139,10 @@ func User(c *fiber.Ctx) error {
 		})
 	}
 
+	// Casted as claims
 	claims := token.Claims.(*Claims)
+
+	fmt.Println(claims.Issuer)
 
 	var user models.User
 
@@ -149,7 +153,7 @@ func User(c *fiber.Ctx) error {
 
 /*
 	Logout User
-	desc: We reset cookie values
+	desc: We reset cookie values because we are not able to remove the cookie
 				Set cookie date value to expired by 1 hour
 				set c.cookie(&cookie)
 */
